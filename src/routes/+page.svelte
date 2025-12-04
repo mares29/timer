@@ -35,27 +35,44 @@
 		let wakeLock: any = null;
 
 		async function requestWakeLock() {
+			// Don't request if already active and not released
+			if (wakeLock !== null && !wakeLock.released) return;
+
 			try {
 				if ('wakeLock' in navigator) {
 					wakeLock = await (navigator as any).wakeLock.request('screen');
 				}
 			} catch (err) {
-				console.error('Wake Lock error:', err);
+				// This is expected if the user hasn't interacted yet
+				console.log('Wake Lock request failed (interaction maybe needed):', err);
 			}
 		}
 
+		// Try immediately
 		requestWakeLock();
 
+		// Handle visibility change (re-request when tab comes into focus)
 		function handleVisibilityChange() {
-			if (wakeLock !== null && document.visibilityState === 'visible') {
+			if (document.visibilityState === 'visible') {
 				requestWakeLock();
 			}
 		}
 
+		// iOS/Safari often requires a user gesture to grant the lock.
+		// We listen for the first interaction to request it again.
+		function handleInteraction() {
+			requestWakeLock();
+		}
+
 		document.addEventListener('visibilitychange', handleVisibilityChange);
+		// Listen for interactions to trigger the lock on iOS
+		document.addEventListener('click', handleInteraction);
+		document.addEventListener('touchstart', handleInteraction);
 
 		return () => {
 			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			document.removeEventListener('click', handleInteraction);
+			document.removeEventListener('touchstart', handleInteraction);
 			if (wakeLock) wakeLock.release();
 		};
 	});
