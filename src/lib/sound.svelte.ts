@@ -57,24 +57,39 @@ export class SoundManager {
 		if (this.#muted) return;
 
 		const ctx = await this.#init();
-		const osc = ctx.createOscillator();
-		const gain = ctx.createGain();
-
-		osc.type = 'square';
-		osc.frequency.setValueAtTime(440, ctx.currentTime);
-		osc.frequency.setValueAtTime(440, ctx.currentTime + 0.1);
-		osc.frequency.setValueAtTime(440, ctx.currentTime + 0.2);
-		osc.frequency.setValueAtTime(440, ctx.currentTime + 0.3);
-
-		// Envelope
-		gain.gain.setValueAtTime(0.2, ctx.currentTime);
-		gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.4);
-		gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
-
-		osc.connect(gain);
-		gain.connect(ctx.destination);
-
-		osc.start();
-		osc.stop(ctx.currentTime + 0.8);
+		
+		// --- Tone 1 ---
+		const osc1 = ctx.createOscillator();
+		const gain1 = ctx.createGain();
+		
+		osc1.type = 'sine';
+		osc1.frequency.setValueAtTime(880, ctx.currentTime); // A5
+		
+		gain1.gain.setValueAtTime(0.001, ctx.currentTime);
+		gain1.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.03);
+		gain1.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+		
+		osc1.connect(gain1);
+		gain1.connect(ctx.destination);
+		
+		osc1.start();
+		osc1.stop(ctx.currentTime + 0.5);
+		
+		// --- Tone 2 (slightly higher) ---
+		const osc2 = ctx.createOscillator();
+		const gain2 = ctx.createGain();
+		
+		osc2.type = 'sine';
+		osc2.frequency.setValueAtTime(1046.5, ctx.currentTime + 0.05); // C6
+		
+		gain2.gain.setValueAtTime(0.001, ctx.currentTime + 0.05);
+		gain2.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.08);
+		gain2.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+		
+		osc2.connect(gain2);
+		gain2.connect(ctx.destination);
+		
+		osc2.start(ctx.currentTime + 0.05);
+		osc2.stop(ctx.currentTime + 0.55);
 	}
 }
