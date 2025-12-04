@@ -48,15 +48,15 @@
 
 	<!-- Main Content -->
 	<main class="flex-1 flex flex-col px-6 pb-8 md:pb-20">
-		<div class="flex-1 flex items-center justify-center scale-100 md:scale-110 transition-transform">
+		<div class="flex-1 flex items-center justify-center scale-100 transition-transform relative z-0">
 			<TimerDisplay {timer} />
 		</div>
 		
-		<div class="w-full max-w-md mx-auto">
+		<div class="w-full max-w-md mx-auto relative z-10">
 			<Controls {timer} {soundManager} bind:isSettingsOpen />
 		</div>
 
-		<footer class="mt-6 text-center text-sm text-gray-500">
+		<footer class="mt-6 text-center text-sm text-gray-500 relative z-10">
 			<a href="/about" class="hover:text-white transition-colors">About</a>
 			<span class="mx-2">&middot;</span>
 			<span>&copy; {new Date().getFullYear()} Made by <a href="https://github.com/mares29" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">mares29</a></span>
