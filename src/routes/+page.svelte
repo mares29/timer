@@ -29,6 +29,36 @@
 			});
 		}
 	});
+
+	// Screen Wake Lock
+	$effect(() => {
+		let wakeLock: any = null;
+
+		async function requestWakeLock() {
+			try {
+				if ('wakeLock' in navigator) {
+					wakeLock = await (navigator as any).wakeLock.request('screen');
+				}
+			} catch (err) {
+				console.error('Wake Lock error:', err);
+			}
+		}
+
+		requestWakeLock();
+
+		function handleVisibilityChange() {
+			if (wakeLock !== null && document.visibilityState === 'visible') {
+				requestWakeLock();
+			}
+		}
+
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			if (wakeLock) wakeLock.release();
+		};
+	});
 </script>
 
 <svelte:head>
