@@ -16,7 +16,7 @@
 
 <div class="relative flex items-center justify-center">
 	<!-- Outer Glow Effect -->
-	<div class="absolute inset-0 bg-purple-500/20 blur-3xl rounded-full transform scale-75 opacity-50"></div>
+	<div class="absolute inset-0 bg-primary-500/20 blur-3xl rounded-full transform scale-75 opacity-50"></div>
 
 	<svg
 		height={radius * 2}
@@ -25,19 +25,19 @@
 	>
 		<defs>
 			<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-				<stop offset="0%" stop-color="#a855f7" /> <!-- purple-500 -->
-				<stop offset="100%" stop-color="#3b82f6" /> <!-- blue-500 -->
+				<stop offset="0%" stop-color="var(--color-primary-500)" /> <!-- purple-500 -->
+				<stop offset="100%" stop-color="var(--color-secondary-500)" /> <!-- blue-500 -->
 			</linearGradient>
 			
 			<linearGradient id="warning" x1="0%" y1="0%" x2="100%" y2="100%">
-				<stop offset="0%" stop-color="#ef4444" /> <!-- red-500 -->
-				<stop offset="100%" stop-color="#f97316" /> <!-- orange-500 -->
+				<stop offset="0%" stop-color="var(--color-danger-500)" /> <!-- red-500 -->
+				<stop offset="100%" stop-color="var(--color-orange-500)" /> <!-- orange-500 -->
 			</linearGradient>
 		</defs>
 
 		<!-- Dark Inner Circle Background -->
 		<circle
-			class="fill-[#13131F]"
+			class="fill-timer-bg"
 			r={radius - 20}
 			cx={radius}
 			cy={radius}
@@ -64,7 +64,7 @@
 			cx={radius}
 			cy={radius}
 			fill="transparent"
-			class="transition-all duration-300"
+			class=""
 		/>
 		
 		<!-- Knob at the end of progress (optional but nice) -->

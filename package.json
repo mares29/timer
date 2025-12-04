@@ -1,6 +1,10 @@
 {
 	"name": "timer",
 	"version": "0.0.1",
+	"author": {
+		"name": "mares29",
+		"url": "https://github.com/mares29"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",

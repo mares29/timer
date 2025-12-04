@@ -28,7 +28,7 @@
 	></div>
 
 	<div 
-		class="fixed inset-x-0 bottom-0 z-50 bg-[#161622] rounded-t-[2rem] shadow-2xl p-8 pb-12 max-h-[80vh] overflow-y-auto border-t border-white/10"
+		class="fixed inset-x-0 bottom-0 z-50 bg-surface rounded-t-[2rem] shadow-2xl p-8 pb-12 max-h-[80vh] overflow-y-auto border-t border-white/10"
 		transition:slide={{ axis: 'y', duration: 300 }}
 	>
 		<div class="flex justify-between items-center mb-8">
@@ -62,7 +62,7 @@
 					step="5"
 					value={timer.duration}
 					oninput={(e) => timer.setDuration(Number(e.currentTarget.value))}
-					class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500"
+					class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-primary-500"
 					disabled={timer.status !== 'idle'}
 				/>
 				
@@ -73,8 +73,8 @@
 							disabled={timer.status !== 'idle'}
 							class="px-5 py-3 rounded-2xl text-sm font-medium transition-all cursor-pointer min-w-[4rem]
 								{timer.duration === preset 
-									? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20' 
-									: 'bg-[#1e1e2d] text-gray-400 hover:bg-[#252536] border border-white/5'}
+									? 'bg-primary-600 text-white shadow-lg shadow-primary-500/20' 
+									: 'bg-surface-hover text-gray-400 hover:bg-surface-active-alt border border-white/5'}
 								disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							{preset}
@@ -84,9 +84,9 @@
 			</div>
 
 			<!-- Sound -->
-			<div class="flex items-center justify-between p-4 bg-[#1e1e2d] rounded-2xl border border-white/5">
+			<div class="flex items-center justify-between p-4 bg-surface-hover rounded-2xl border border-white/5">
 				<div class="flex items-center gap-4">
-					<div class="p-3 bg-purple-500/20 rounded-xl text-purple-400">
+					<div class="p-3 bg-primary-500/20 rounded-xl text-primary-400">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
 						</svg>
@@ -99,8 +99,8 @@
 				<button
 					onclick={() => soundManager.toggleMute()}
 					aria-label={soundManager.muted ? "Unmute sounds" : "Mute sounds"}
-					class="relative inline-flex h-7 w-12 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#161622] cursor-pointer
-						{!soundManager.muted ? 'bg-purple-600' : 'bg-gray-700'}"
+					class="relative inline-flex h-7 w-12 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-surface cursor-pointer
+						{!soundManager.muted ? 'bg-primary-600' : 'bg-gray-700'}"
 				>
 					<span
 						class="inline-block h-5 w-5 transform rounded-full bg-white transition-transform shadow-sm
