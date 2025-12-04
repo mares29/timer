@@ -2,7 +2,18 @@ export type TimerStatus = 'idle' | 'running' | 'paused' | 'finished';
 
 export class QuizTimer {
 	// Configuration
-	duration = $state(30);
+	#duration = $state(30);
+	
+	get duration() {
+		return this.#duration;
+	}
+
+	set duration(value: number) {
+		this.#duration = value;
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('timer_duration', String(value));
+		}
+	}
 	
 	// State
 	timeLeft = $state(30);
@@ -16,8 +27,20 @@ export class QuizTimer {
 	#pausedTime: number = 0;
 
 	constructor(initialDuration = 30) {
-		this.duration = initialDuration;
-		this.timeLeft = initialDuration;
+		let startDuration = initialDuration;
+		
+		if (typeof localStorage !== 'undefined') {
+			const saved = localStorage.getItem('timer_duration');
+			if (saved) {
+				const parsed = parseInt(saved);
+				if (!isNaN(parsed)) {
+					startDuration = parsed;
+				}
+			}
+		}
+
+		this.#duration = startDuration;
+		this.timeLeft = startDuration;
 	}
 
 	setDuration(seconds: number) {

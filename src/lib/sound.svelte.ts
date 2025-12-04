@@ -4,6 +4,12 @@ export class SoundManager {
 
 	constructor() {
 		// Initialize on first user interaction ideally, but we can setup the class
+		if (typeof localStorage !== 'undefined') {
+			const saved = localStorage.getItem('sound_muted');
+			if (saved !== null) {
+				this.#muted = saved === 'true';
+			}
+		}
 	}
 
 	get muted() {
@@ -12,10 +18,13 @@ export class SoundManager {
 
 	set muted(value: boolean) {
 		this.#muted = value;
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem('sound_muted', String(value));
+		}
 	}
 
 	toggleMute() {
-		this.#muted = !this.#muted;
+		this.muted = !this.muted;
 	}
 
 	async prepare() {
@@ -33,7 +42,7 @@ export class SoundManager {
 	}
 
 	async playTick() {
-		if (this.#muted) return;
+		if (this.muted) return;
 		
 		const ctx = await this.#init();
 		const osc = ctx.createOscillator();
@@ -54,7 +63,7 @@ export class SoundManager {
 	}
 
 	async playAlarm() {
-		if (this.#muted) return;
+		if (this.muted) return;
 
 		const ctx = await this.#init();
 		
