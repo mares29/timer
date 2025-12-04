@@ -42,4 +42,6 @@ html, body {
 	background-color: var(--color-page);
 	color: white;
 	overscroll-behavior-y: none; /* Prevents "bounce" effect on pull-to-refresh if not needed */
+	height: 100%;
+	overflow: hidden;
 }

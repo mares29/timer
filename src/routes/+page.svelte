@@ -36,7 +36,7 @@
 	<meta name="description" content="A simple, beautiful timer app for quiz nights." />
 </svelte:head>
 
-<div class="min-h-screen bg-page text-white flex flex-col font-sans selection:bg-primary-500/30">
+<div class="h-dvh w-full overflow-hidden bg-page text-white flex flex-col font-sans selection:bg-primary-500/30">
 	<!-- Header -->
 	<header class="flex justify-center items-start p-8 pt-12">
 		<div class="flex flex-col items-center gap-1">
@@ -56,10 +56,10 @@
 			<Controls {timer} {soundManager} bind:isSettingsOpen />
 		</div>
 
-		<footer class="mt-12 text-center text-sm text-gray-500">
+		<footer class="mt-6 text-center text-sm text-gray-500">
 			<a href="/about" class="hover:text-white transition-colors">About</a>
 			<span class="mx-2">&middot;</span>
-			<span>&copy; {new Date().getFullYear()} Made by <a href="https://github.com/mares29" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">mares29</a></span>
+			<span>&copy; {new Date().getFullYear()} Made by <a href="https://github.com/mares29" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">mares29</a></span>
 		</footer>
 	</main>
 
