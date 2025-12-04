@@ -32,7 +32,6 @@
 				soundManager?.prepare();
 				timer.start();
 			}}
-			disabled={timer.status === 'finished'}
 			class="col-span-2 bg-gradient-to-br from-primary-600 to-secondary-600 hover:from-primary-500 hover:to-secondary-500 text-white font-medium py-4 px-8 rounded-full shadow-[0_0_15px_color-mix(in_srgb,var(--color-primary-600),transparent_50%)] hover:shadow-[0_0_25px_color-mix(in_srgb,var(--color-primary-600),transparent_30%)] focus:shadow-[0_0_25px_color-mix(in_srgb,var(--color-primary-600),transparent_30%)] focus:outline-none focus:ring-2 focus:ring-primary-400/50 transform transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
 		>
 			{#if timer.status === 'paused'}

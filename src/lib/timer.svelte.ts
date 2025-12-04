@@ -28,7 +28,11 @@ export class QuizTimer {
 	}
 
 	start() {
-		if (this.status === 'running' || this.timeLeft <= 0) return;
+		if (this.status === 'running') return;
+
+		if (this.status === 'finished' || this.timeLeft <= 0) {
+			this.reset();
+		}
 
 		if (this.status === 'paused') {
 			// Resume
