@@ -163,6 +163,5 @@ html, body {
 	background-color: var(--color-page);
 	color: white;
 	overscroll-behavior-y: none;
-	height: 100%;
-	overflow: hidden;
+	min-height: 100%;
 }
