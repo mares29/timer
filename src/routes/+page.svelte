@@ -79,7 +79,7 @@
 </script>
 
 <svelte:head>
-	<title>Countdown Timer</title>
+	<title>Tickie</title>
 	<meta name="description" content="A simple, beautiful timer app for quiz nights." />
 </svelte:head>
 
@@ -87,8 +87,9 @@
 	<!-- Header -->
 	<header class="flex justify-center items-start p-8 pt-12">
 		<div class="flex flex-col items-center gap-1">
-			<h1 class="text-2xl md:text-3xl font-semibold text-white tracking-tight leading-tight text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
-				Countdown Timer
+			<h1 class="font-title text-2xl md:text-3xl text-white tracking-[0.2em] leading-tight text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 flex items-center gap-3">
+				<img src="/favicon.svg" alt="Timer Logo" class="w-8 h-8 md:w-10 md:h-10" />
+				Tickie
 			</h1>
 		</div>
 	</header>
@@ -117,3 +118,4 @@
 		{soundManager} 
 	/>
 </div>
+

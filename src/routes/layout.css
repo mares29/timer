@@ -165,3 +165,8 @@ html, body {
 	overscroll-behavior-y: none;
 	min-height: 100%;
 }
+
+.font-title {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 900;
+}
