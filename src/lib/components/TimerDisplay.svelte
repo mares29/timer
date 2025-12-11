@@ -66,7 +66,7 @@
 
 		<!-- Track -->
 		<circle
-			class="stroke-gray-800/50"
+			class="stroke-timer-track"
 			stroke-width={stroke}
 			r={normalizedRadius}
 			cx={radius}
@@ -92,10 +92,10 @@
 	</svg>
 	
 	<div class="absolute text-center z-20 flex flex-col items-center justify-center pointer-events-none">
-		<span class="text-6xl font-medium tabular-nums text-white tracking-tight opacity-90">
+		<span class="text-6xl font-medium tabular-nums text-foreground tracking-tight opacity-90">
 			{timer.timeLeft}
 		</span>
-		<span class="text-sm font-medium text-gray-400 mt-2 tracking-wide group-hover:text-gray-300 transition-colors">
+		<span class="text-sm font-medium text-muted-foreground mt-2 tracking-wide group-hover:text-foreground/70 transition-colors">
 			{#if timer.status === 'idle'}
 				Tap to start
 			{:else if timer.status === 'running'}

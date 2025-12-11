@@ -40,6 +40,15 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Light theme custom variables */
+  --page: #f8f9fc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
+  --surface-active-alt: #e8ecf2;
+  --timer-bg: #f1f3f8;
+  --timer-track: oklch(0.9 0.01 260);
 }
 
 .dark {
@@ -74,6 +83,15 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  /* Dark theme custom variables */
+  --page: #0B0B15;
+  --surface: #161622;
+  --surface-hover: #1e1e2d;
+  --surface-active: #2d2d3f;
+  --surface-active-alt: #252536;
+  --timer-bg: #13131F;
+  --timer-track: oklch(0.25 0.02 260 / 50%);
 }
 
 @theme inline {
@@ -113,26 +131,24 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* User theme variables merged */
-  /* Backgrounds */
-  --color-page: #0B0B15;
-  --color-surface: #161622;
-  --color-surface-hover: #1e1e2d;
-  --color-surface-active: #2d2d3f;
-  --color-surface-active-alt: #252536;
-  --color-timer-bg: #13131F;
+  /* Custom theme variables - these reference CSS custom properties that change with theme */
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+  --color-surface-active-alt: var(--surface-active-alt);
+  --color-timer-bg: var(--timer-bg);
+  --color-timer-track: var(--timer-track);
 
   /* Primary (Purple) */
   --color-primary-400: #c084fc;
   --color-primary-500: #a855f7;
   --color-primary-600: #9333ea;
-  --color-primary: var(--color-primary-500);
 
   /* Secondary (Blue) */
   --color-secondary-400: #60a5fa;
   --color-secondary-500: #3b82f6;
   --color-secondary-600: #2563eb;
-  --color-secondary: var(--color-secondary-500);
 
   /* Accents & Status */
   --color-success-400: #4ade80;
@@ -161,12 +177,12 @@
 /* User global styles */
 html, body {
 	background-color: var(--color-page);
-	color: white;
+	color: var(--foreground);
 	overscroll-behavior-y: none;
 	min-height: 100%;
 }
 
 .font-title {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 900;
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-weight: bold;
 }

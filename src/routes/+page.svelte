@@ -83,11 +83,11 @@
 	<meta name="description" content="A simple, beautiful timer app for quiz nights." />
 </svelte:head>
 
-<div class="h-dvh w-full overflow-hidden bg-page text-white flex flex-col font-sans selection:bg-primary-500/30">
+<div class="h-dvh w-full overflow-hidden bg-page text-foreground flex flex-col font-sans selection:bg-primary-500/30">
 	<!-- Header -->
 	<header class="flex justify-center items-start p-8 pt-12">
 		<div class="flex flex-col items-center gap-1">
-			<h1 class="font-title text-2xl md:text-3xl text-white tracking-[0.2em] leading-tight text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 flex items-center gap-3">
+			<h1 class="font-title text-2xl md:text-3xl tracking-[0.2em] leading-tight text-center bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/80 flex items-center gap-3">
 				<img src="/favicon.svg" alt="Timer Logo" class="w-8 h-8 md:w-10 md:h-10" />
 				Tickie
 			</h1>
@@ -104,10 +104,10 @@
 			<Controls {timer} {soundManager} bind:isSettingsOpen />
 		</div>
 
-		<footer class="mt-6 text-center text-sm text-gray-500 relative z-10">
-			<a href="/about" class="hover:text-white transition-colors">About</a>
+		<footer class="mt-6 text-center text-sm text-muted-foreground relative z-10">
+			<a href="/about" class="hover:text-foreground transition-colors">About</a>
 			<span class="mx-2">&middot;</span>
-			<span>&copy; {new Date().getFullYear()} Made by <a href="https://github.com/mares29" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">mares29</a></span>
+			<span>&copy; {new Date().getFullYear()} Made by <a href="https://github.com/mares29" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">mares29</a></span>
 		</footer>
 	</main>
 
