@@ -17,7 +17,11 @@
 		if (timer.status === 'running' && timer.timeLeft > 0) {
 			timer.timeLeft;
 			untrack(() => {
-				soundManager.playTick();
+				if (timer.timeLeft <= 5) {
+					soundManager.playWarningTick();
+				} else {
+					soundManager.playTick();
+				}
 			});
 		}
 	});

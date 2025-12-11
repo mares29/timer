@@ -18,7 +18,7 @@
 	let strokeDashoffset = $derived(circumference - (timer.progress * circumference));
 	
 	// In the screenshot, the color is a solid purple/gradient, simpler logic
-	let isWarning = $derived(timer.timeLeft <= 10);
+	let isWarning = $derived(timer.timeLeft <= 5);
 
 	async function handleCircleClick() {
 		if (timer.status === 'running') {
@@ -52,7 +52,7 @@
 			
 			<linearGradient id="warning" x1="0%" y1="0%" x2="100%" y2="100%">
 				<stop offset="0%" stop-color="var(--color-danger-500)" /> <!-- red-500 -->
-				<stop offset="100%" stop-color="var(--color-orange-500)" /> <!-- orange-500 -->
+				<stop offset="100%" stop-color="var(--color-danger-600)" /> <!-- darker red -->
 			</linearGradient>
 		</defs>
 
@@ -74,9 +74,9 @@
 			fill="transparent"
 		/>
 
-		<!-- Progress -->
+		<!-- Progress (normal gradient) -->
 		<circle
-			stroke={isWarning ? "url(#warning)" : "url(#gradient)"}
+			stroke="url(#gradient)"
 			stroke-width={stroke}
 			stroke-dasharray={circumference + ' ' + circumference}
 			style="stroke-dashoffset: {strokeDashoffset}"
@@ -85,7 +85,23 @@
 			cx={radius}
 			cy={radius}
 			fill="transparent"
-			class=""
+			class="transition-opacity duration-[5000ms]"
+			opacity={isWarning ? 0 : 1}
+		/>
+
+		<!-- Progress (warning gradient) -->
+		<circle
+			stroke="url(#warning)"
+			stroke-width={stroke}
+			stroke-dasharray={circumference + ' ' + circumference}
+			style="stroke-dashoffset: {strokeDashoffset}"
+			stroke-linecap="round"
+			r={normalizedRadius}
+			cx={radius}
+			cy={radius}
+			fill="transparent"
+			class="transition-opacity duration-[5000ms]"
+			opacity={isWarning ? 1 : 0}
 		/>
 		
 		<!-- Knob at the end of progress (optional but nice) -->

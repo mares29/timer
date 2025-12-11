@@ -62,6 +62,27 @@ export class SoundManager {
 		osc.stop(ctx.currentTime + 0.05);
 	}
 
+	async playWarningTick() {
+		if (this.muted) return;
+		
+		const ctx = await this.#init();
+		const osc = ctx.createOscillator();
+		const gain = ctx.createGain();
+
+		osc.type = 'sine';
+		osc.frequency.setValueAtTime(1200, ctx.currentTime);
+		osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.08);
+
+		gain.gain.setValueAtTime(0.15, ctx.currentTime);
+		gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+
+		osc.connect(gain);
+		gain.connect(ctx.destination);
+
+		osc.start();
+		osc.stop(ctx.currentTime + 0.08);
+	}
+
 	async playAlarm() {
 		if (this.muted) return;
 
