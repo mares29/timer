@@ -87,8 +87,7 @@
 	<!-- Header -->
 	<header class="flex justify-center items-start p-8 pt-12">
 		<div class="flex flex-col items-center gap-1">
-			<h1 class="font-title text-2xl md:text-3xl tracking-[0.2em] leading-tight text-center bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/80 flex items-center gap-3">
-				<img src="/favicon.svg" alt="Timer Logo" class="w-8 h-8 md:w-10 md:h-10" />
+			<h1 class="font-title text-2xl md:text-3xl tracking-[0.2em] leading-tight text-center bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/80">
 				Tickie
 			</h1>
 		</div>
