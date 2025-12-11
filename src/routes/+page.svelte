@@ -97,7 +97,7 @@
 	<!-- Main Content -->
 	<main class="flex-1 flex flex-col px-6 pb-8 md:pb-20">
 		<div class="flex-1 flex items-center justify-center scale-100 transition-transform relative z-0">
-			<TimerDisplay {timer} />
+			<TimerDisplay {timer} {soundManager} />
 		</div>
 		
 		<div class="w-full max-w-md mx-auto relative z-10">

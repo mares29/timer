@@ -1,7 +1,14 @@
 <script lang="ts">
 	import type { QuizTimer } from '$lib/timer.svelte';
+	import type { SoundManager } from '$lib/sound.svelte';
 
-	let { timer }: { timer: QuizTimer } = $props();
+	let { 
+		timer,
+		soundManager
+	}: { 
+		timer: QuizTimer;
+		soundManager?: SoundManager;
+	} = $props();
 
 	const radius = 120;
 	const stroke = 3; // Thinner stroke
@@ -12,11 +19,25 @@
 	
 	// In the screenshot, the color is a solid purple/gradient, simpler logic
 	let isWarning = $derived(timer.timeLeft <= 10);
+
+	function handleCircleClick() {
+		if (timer.status === 'running') {
+			timer.pause();
+		} else {
+			// For idle, paused, or finished states - start/resume
+			soundManager?.prepare();
+			timer.start();
+		}
+	}
 </script>
 
-<div class="relative flex items-center justify-center">
+<button
+	class="relative flex items-center justify-center cursor-pointer group focus:outline-none"
+	onclick={handleCircleClick}
+	aria-label={timer.status === 'running' ? 'Pause timer' : timer.status === 'finished' ? 'Restart timer' : 'Start timer'}
+>
 	<!-- Outer Glow Effect -->
-	<div class="absolute inset-0 bg-primary-500/20 blur-3xl rounded-full transform scale-75 opacity-50"></div>
+	<div class="absolute inset-0 bg-primary-500/20 blur-3xl rounded-full transform scale-75 opacity-50 group-hover:opacity-70 transition-opacity"></div>
 
 	<svg
 		height={radius * 2}
@@ -37,7 +58,7 @@
 
 		<!-- Dark Inner Circle Background -->
 		<circle
-			class="fill-timer-bg"
+			class="fill-timer-bg group-hover:fill-surface-hover transition-colors duration-200"
 			r={radius - 20}
 			cx={radius}
 			cy={radius}
@@ -70,12 +91,20 @@
 		<!-- Knob at the end of progress (optional but nice) -->
 	</svg>
 	
-	<div class="absolute text-center z-20 flex flex-col items-center justify-center">
+	<div class="absolute text-center z-20 flex flex-col items-center justify-center pointer-events-none">
 		<span class="text-6xl font-medium tabular-nums text-white tracking-tight opacity-90">
 			{timer.timeLeft}
 		</span>
-		<span class="text-sm font-medium text-gray-400 mt-2 tracking-wide">
-			{timer.status === 'idle' ? 'Ready' : timer.status === 'finished' ? 'Time\'s up' : 'Remaining'}
+		<span class="text-sm font-medium text-gray-400 mt-2 tracking-wide group-hover:text-gray-300 transition-colors">
+			{#if timer.status === 'idle'}
+				Tap to start
+			{:else if timer.status === 'running'}
+				Tap to pause
+			{:else if timer.status === 'paused'}
+				Tap to resume
+			{:else}
+				Tap to restart
+			{/if}
 		</span>
 	</div>
-</div>
+</button>
