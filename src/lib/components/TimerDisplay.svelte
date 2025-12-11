@@ -20,12 +20,12 @@
 	// In the screenshot, the color is a solid purple/gradient, simpler logic
 	let isWarning = $derived(timer.timeLeft <= 10);
 
-	function handleCircleClick() {
+	async function handleCircleClick() {
 		if (timer.status === 'running') {
 			timer.pause();
 		} else {
 			// For idle, paused, or finished states - start/resume
-			soundManager?.prepare();
+			await soundManager?.prepare();
 			timer.start();
 		}
 	}
@@ -34,7 +34,7 @@
 <button
 	class="relative flex items-center justify-center cursor-pointer group focus:outline-none"
 	onclick={handleCircleClick}
-	aria-label={timer.status === 'running' ? 'Pause timer' : timer.status === 'finished' ? 'Restart timer' : 'Start timer'}
+	aria-label={timer.status === 'running' ? 'Pause timer' : timer.status === 'paused' ? 'Resume timer' : timer.status === 'finished' ? 'Restart timer' : 'Start timer'}
 >
 	<!-- Outer Glow Effect -->
 	<div class="absolute inset-0 bg-primary-500/20 blur-3xl rounded-full transform scale-75 opacity-50 group-hover:opacity-70 transition-opacity"></div>
